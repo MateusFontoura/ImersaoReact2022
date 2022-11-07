@@ -1,0 +1,21 @@
+{
+    "name": "Mateus Fontoura [Fontônico]",
+    "job": "Aspirante a FullStackDev",
+    "github": "MateusFontoura",
+    "playlists": {
+        "jogos": [
+            {
+                "title": "Abismo Joga Coteries of New York - P1",
+                "url": "https://youtu.be/MgHX2WfhP_4?list=PLC3klG_Q8mUV6lgYFkVxTBw0lmcuAFytM",
+                "thumb": "https://i.ytimg.com/vi/MgHX2WfhP_4/hqdefault.jpg"
+            }
+        ],
+        "abismo-dos-dados": [
+            {
+                "title": "A Corrupção do Novo Éden",
+                "url": "AlgumaURL",
+                "thumb": "thumbnail"
+            }
+        ]
+    }
+}
