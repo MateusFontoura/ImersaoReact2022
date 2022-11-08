@@ -2,6 +2,7 @@
     "name": "Mateus Fontoura [Fontônico]",
     "job": "Aspirante a FullStackDev",
     "github": "MateusFontoura",
+    "banner": "https://images.unsplash.com/photo-1653675762177-c167df5ac212?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     "playlists": {
         "jogos": [
             {
@@ -13,8 +14,24 @@
         "abismo-dos-dados": [
             {
                 "title": "A Corrupção do Novo Éden",
-                "url": "AlgumaURL",
-                "thumb": "thumbnail"
+                "url": "https://youtu.be/HIBRrypn6q8",
+                "thumb": "https://i.ytimg.com/vi/HIBRrypn6q8/hqdefault.jpg"
+            }
+        ]
+    },
+    "favorites": {
+        "fav1": [
+            {
+                "name": "@clovisricardo",
+                "avatar": "Foto",
+                "profile": "url"
+            }
+        ],
+        "fav2": [
+            {
+                "name": "@periclesalmeida",
+                "avatar": "Foto",
+                "profile": "url"
             }
         ]
     }

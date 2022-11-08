@@ -1,26 +1,31 @@
+import React from "react";
 import config from "../config.json"
 import styled from "styled-components"
 import { CSSReset } from "../src/components/CSSReset";
-import Menu from "../src/components/Menu";
+import Menu from "../src/components/Menu/index";
 import { StyledTimeline } from "../src/components/Timeline";
 
 function HomePage() {
     const estilosDaHomePage = {
         //backgroundColor: "red"
     };
+    const [valorDoFiltro, setValorDoFiltro] = React.useState("");
     return (
         <>
             <CSSReset />
             <div style={estilosDaHomePage}>
-                <Menu>
+                <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro}>
 
                 </Menu>
                 <Header>
 
                 </Header>
-                <Timeline playlists={config.playlists}>
+                <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
 
                 </Timeline>
+                <FavoriteUsers favorites={config.favorites}>
+
+                </FavoriteUsers >
             </div>
         </>
     );
@@ -42,13 +47,31 @@ const StyledHeader = styled.div`
         width: 100%;
         padding: 16px 32px;
         gap: 16px;
-        margin-top: 50px;
     }
+
+    .user-banner{
+        width: 1512px;
+        height: 230px;
+        border-radius: 0%;
+
+    }
+    .user-favorites{
+        display: grid;
+        align-items: center;
+        flex-direction: row;
+    }
+
 `;
-function Header() {
+const StyledBanner = styled.div`
+    background-image: url(${({ banner }) => banner});
+    width: 1512px;
+    height: 230px;
+    border-radius: 0%;
+`;
+function Header(props) {
     return (
         <StyledHeader>
-            <img src="banner"></img>
+            <StyledBanner banner={config.banner}></StyledBanner>
             <section className="user-info">
                 <img src={`https://github.com/${config.github}.png`}></img>
                 <div>
@@ -68,19 +91,24 @@ function Header() {
     )
 }
 
-function Timeline(props) {
+function Timeline({ searchValue, ...props }) {
     const playlistNames = Object.keys(props.playlists)
     return (
         <StyledTimeline>
             {playlistNames.map((playlistName) => {
                 const videos = props.playlists[playlistName];
                 return (
-                    <section>
+                    <section key={playlistName}>
                         <h2>{playlistName}</h2>
                         <div>
-                            {videos.map((video) => {
+                            {videos.filter((video) => {
+                                const titleNormalized = video.title.toLowerCase();
+                                const searchValueNormalized = searchValue.toLowerCase();
+                                return titleNormalized.includes(searchValueNormalized);
+
+                            }).map((video) => {
                                 return (
-                                    <a href={video.url}>
+                                    <a key={video.url} href={video.url}>
                                         <img src={video.thumb}></img>
                                         <span>{video.title}</span>
                                     </a>
@@ -91,5 +119,35 @@ function Timeline(props) {
                 )
             })}
         </StyledTimeline>
+    )
+}
+
+function FavoriteUsers(props) {
+    const favoriteUsers = Object.keys(props.favorites);
+    return (
+        <StyledHeader>
+            {favoriteUsers.map((favorite) => {
+                const userName = props.favorites[favorite];
+                return (
+                    <section>
+                        <div className="user-favorites"  >
+                            {userName.map((user) => {
+                                return (
+                                    <div>
+                                        <a href={user.profile}>
+                                            <img src={`https://github.com/${config.github}.png`}></img>
+                                        </a>
+                                        <p>{user.name}</p>
+                                    </div>
+                                )
+                            })}
+
+                        </div>
+                    </section>
+                )
+            })
+
+            }
+        </StyledHeader>
     )
 }
