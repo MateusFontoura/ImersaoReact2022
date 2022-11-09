@@ -36,6 +36,7 @@ export default HomePage
 
 
 const StyledHeader = styled.div`
+    background-color: ${({ theme }) => theme.backgroundLevel1};
     img{
         width: 80px;
         height: 80px;
@@ -56,9 +57,15 @@ const StyledHeader = styled.div`
 
     }
     .user-favorites{
-        display: grid;
+        display: flex;
         align-items: center;
         flex-direction: row;
+    }
+
+    .user-favorites-cards{
+        font-size: 14px;
+        font-family: 'Helvetica';
+        border-left: 5px;
     }
 
 `;
@@ -126,14 +133,18 @@ function FavoriteUsers(props) {
     const favoriteUsers = Object.keys(props.favorites);
     return (
         <StyledHeader>
-            {favoriteUsers.map((favorite) => {
-                const userName = props.favorites[favorite];
-                return (
-                    <section>
-                        <div className="user-favorites"  >
+            <div>
+                <h2>Usuários Favoritos</h2>
+            </div>
+            <div className="user-favorites"  >
+
+                {favoriteUsers.map((favorite) => {
+                    const userName = props.favorites[favorite];
+                    return (
+                        <div >
                             {userName.map((user) => {
                                 return (
-                                    <div>
+                                    <div className="user-favorites-cards">
                                         <a href={user.profile}>
                                             <img src={`https://github.com/${config.github}.png`}></img>
                                         </a>
@@ -143,11 +154,12 @@ function FavoriteUsers(props) {
                             })}
 
                         </div>
-                    </section>
-                )
-            })
 
-            }
+                    )
+                })
+
+                }
+            </div>
         </StyledHeader>
     )
 }
