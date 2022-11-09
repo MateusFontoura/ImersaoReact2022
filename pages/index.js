@@ -65,7 +65,7 @@ const StyledHeader = styled.div`
     .user-favorites-cards{
         font-size: 14px;
         font-family: 'Helvetica';
-        border-left: 5px;
+        margin-left: 10px;
     }
 
 `;
